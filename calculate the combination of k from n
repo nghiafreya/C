@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+long long int factorial(int x) { //calculate the factorial of a number
+    long long int fact = 1;
+    
+    if (x < 0) {
+		printf("ERROR");
+	}
+	
+	else if (x == 0) {
+		fact = 0;
+	}
+	
+	else {
+	
+	    for (int count = 1; count <= x; count++) {
+	        fact = fact * count;
+	    }
+	}
+    return fact;
+}
+
+long long int reduce (int big, int small) { //simplify the fraction made of 2 factorials
+	static long long int after_reduce = 1;
+	after_reduce *= big;
+	
+	if (big == small + 1) {
+		return after_reduce;		
+	}
+	else {
+		return reduce(big - 1, small);
+	}
+	
+}
+
+ int main(){
+    
+    long long int n, k;
+    scanf("%lld%lld", &n, &k);   
+    
+    long long int a = reduce(n, n - k); //simplify n! and (n-k)!, the remaining will be n(n-1)(n-2)...(k+1)
+    long long int b = factorial(k); //k!
+
+    
+    printf("%lld", a / b);
+
+    
+    
+    return 0;
+    
+}
