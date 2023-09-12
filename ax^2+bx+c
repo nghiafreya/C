@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+    float a, b, c;
+    scanf("%f%f%f", &a, &b, &c);
+ 
+    float delta =  b*b - 4*a*c;
+    
+    if (a == 0) { 
+        if (b == 0) { 
+            if (c == 0) { //vô số nghiệm
+                printf("WOW");
+            }
+            else { //a = b = 0, c != 0 thì vô nghiệm
+                printf("NO"); //vô nghiệm
+            }
+        }
+    
+        else { // b != 0
+            if (c == 0) {
+                printf("%.2f", 0.00);
+            }
+            else { //giải ptr bx + c = 0
+                printf("%.2f", (-c) / b);
+            }            
+            
+        }
+    }   
+    
+    else { // a!= 0
+        if (delta < 0) { //delta < 0 => vô nghiệm
+            printf("NO");
+        }
+        else if (delta == 0) { //delta = 0 => nghiệm kép
+            printf("%.2f", (-b) / (2*a));
+        }
+        
+        else { //delta > 0 => 2 nghiệm
+            float no1 = (-b + sqrt(delta)) / (2*a);
+            float no2 = (-b - sqrt(delta)) / (2*a);
+        
+            if (no1 <= no2) {
+                 printf("%.2f %.2f", no1, no2);
+            }
+            else {
+                 printf("%.2f %.2f", no2, no1);
+           }
+        }
+    }
+
+    return 0;
+}
