@@ -1,1 +1,1 @@
-
+Those are basic exercises.
